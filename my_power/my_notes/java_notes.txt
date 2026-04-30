@@ -1,0 +1,87 @@
+一、Java 基础语法
+1.Java 是跨平台、面向对象、编译 + 解释型语言，核心特点：封装、继承、多态、抽象。
+2.Java 程序运行流程：源代码.java→编译为.class 字节码→JVM 解析执行。
+3. 基本数据类型：byte short int long float double char boolean。
+4. 引用数据类型：类、接口、数组、String、集合等。
+5. 运算符分类：算术、关系、逻辑、位运算、三元、赋值运算符。
+6. 流程控制：if-else、switch、for、while、do-while、break、continue、return。
+7. 数组：固定长度、连续内存空间，分为一维数组、二维数组。
+8. 字符串 String：不可变字符序列，底层 char 数组 /byte 数组，每次修改都会生成新对象。
+二、面向对象 OOP
+1. 封装：私有化成员变量，提供 get/set 方法，隐藏内部实现。
+2. 继承：使用 extends，子类复用父类代码，单继承、多实现。
+3. 多态：父类引用指向子类对象，编译看左边、运行看右边。
+4. 抽象：abstract 修饰抽象类 / 抽象方法，抽象类不能实例化。
+5. 接口：interface，全抽象方法 (JDK7 前)，JDK8 支持默认方法、静态方法。
+6. 构造方法：与类名同名，无返回值，创建对象时自动调用。
+7. 重载：同类中，方法名相同、参数列表不同，和返回值无关。
+8. 重写：子类重写父类非私有、非 final、非 static 方法，权限不能缩小。
+9.this：指代当前对象；super：指代父类对象 / 父类构造。
+三、常用核心类
+1.Object 类：所有类的根父类，包含 equals、hashCode、toString、clone、finalize。
+2.String、StringBuilder、StringBuffer 区别：String 不可变；StringBuilder 线程不安全效率高；StringBuffer 线程安全效率低。
+3. 包装类：基本类型的封装类，支持泛型、对象化操作，自动装箱拆箱。
+4.Date、SimpleDateFormat、LocalDateTime：JDK8 新时间类线程安全。
+5.Math 工具类：静态方法，提供数学运算、随机数、四舍五入。
+四、集合框架
+1. 集合分为单列 Collection、双列 Map。
+2.List：有序可重复，常用 ArrayList、LinkedList、Vector。ArrayList 底层数组，查询快增删慢；LinkedList 底层双向链表，增删快查询慢。
+3.Set：无序不可重复，HashSet、LinkedHashSet、TreeSet。HashSet 底层 HashMap，依靠 hashCode+equals 去重。
+4.Map：键值对，键唯一，HashMap、LinkedHashMap、TreeMap、HashTable。HashMap JDK7 数组 + 链表，JDK8 数组 + 链表 + 红黑树，线程不安全。
+5. 集合遍历：增强 for、迭代器 Iterator、forEach lambda。
+五、异常处理
+1. 异常体系：Throwable→Error (系统级错误)、Exception (可处理异常)。
+2. 运行时异常 RuntimeException：数组越界、空指针、类型转换异常等，无需手动捕获。
+3. 编译时异常：IO、SQL、文件异常，必须捕获或抛出。
+4. 关键字：try-catch-finally、throw、throws。
+5.finally 特点：一定会执行，除非 JVM 退出。
+6. 自定义异常：继承 Exception 或 RuntimeException，自定义业务异常。
+六、IO 流
+1.IO 分类：字节流 (一切文件)、字符流 (纯文本)。
+2. 字节流：InputStream、OutputStream，适合图片、视频、文件复制。
+3. 字符流：Reader、Writer，专门处理 txt、java 等文本文件。
+4. 缓冲流：BufferedReader、BufferedInputStream，提高读写效率。
+5. 序列化：ObjectOutputStream，对象持久化，需实现 Serializable 接口。
+6. 路径分类：绝对路径、相对路径。
+七、多线程
+1. 线程与进程：进程是资源分配单位，线程是执行单位，一个进程多个线程。
+2. 线程创建方式：继承 Thread、实现 Runnable、Callable+FutureTask、线程池。
+3. 线程生命周期：新建、就绪、运行、阻塞、死亡。
+4. 线程安全问题：多线程共享全局变量引发数据错乱。
+5. 同步方案：synchronized、Lock 锁、volatile。
+6.volatile：保证可见性、禁止指令重排，不保证原子性。
+7. 线程池：Executor、ThreadPoolExecutor，核心参数：核心线程数、最大线程数、队列、拒绝策略。
+8. 死锁：多个线程互相持有对方锁，互相等待，产生条件：互斥、请求保持、不可剥夺、循环等待。
+八、JVM 基础
+1.JVM 结构：类加载子系统、运行时数据区、执行引擎、本地方法接口。
+2. 运行时数据区：堆、栈、方法区、本地方法栈、程序计数器。
+3. 堆：存放对象实例，垃圾回收主要区域，分新生代、老年代。
+4. 栈：虚拟机栈，存放局部变量、方法栈帧，线程私有。
+5. 垃圾回收 GC：标记清除、标记整理、复制算法。
+6. 类加载过程：加载、验证、准备、解析、初始化。
+九、MySQL 数据库
+1. 三大范式：列原子性、主键唯一、外键约束减少冗余。
+2. 索引：提高查询效率，主键索引、唯一索引、普通索引、联合索引。
+3.InnoDB 与 MyISAM：InnoDB 支持事务、行锁、外键；MyISAM 全文索引、表锁。
+4. 事务四大特性 ACID：原子性、一致性、隔离性、持久性。
+5. 事务隔离级别：读未提交、读已提交、可重复读、串行化。
+6.SQL 优化：避免 select *、合理建索引、减少子查询、避免模糊查询开头 %。
+十、Spring 核心
+1.Spring 两大核心：IOC 控制反转、AOP 面向切面。
+2.IOC：容器管理 Bean，对象创建与依赖注入交给容器，解耦。
+3. 依赖注入 DI：构造器注入、set 注入、注解注入。
+4.AOP：动态代理，统一处理日志、事务、权限、限流等通用逻辑。
+5.Bean 作用域：singleton 单例、prototype 多例、request、session。
+6. 事务管理：@Transactional，支持声明式事务，控制事务传播行为、隔离级别。
+十一、SpringBoot
+1.SpringBoot 核心：自动配置、起步依赖、内嵌服务器、简化开发。
+2. 核心注解：@SpringBootApplication、@Controller、@Service、@Repository。
+3. 配置文件：application.properties、application.yml，多环境配置。
+4. 整合组件：MyBatis-Plus、Redis、MQ、Druid 连接池。
+5. 热部署、全局异常处理、跨域配置、拦截器配置。
+十二、Redis 缓存
+1.Redis 是高性能内存数据库，键值对存储，支持多数据结构。
+2. 常用数据类型：String、List、Set、Hash、ZSet。
+3. 过期淘汰策略：定时删除、惰性删除、定期删除。
+4. 缓存问题：缓存穿透、缓存击穿、缓存雪崩及解决方案。
+5. 持久化：RDB 快照、AOF 日志，保证数据落地。

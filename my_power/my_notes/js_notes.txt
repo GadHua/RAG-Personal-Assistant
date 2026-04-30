@@ -1,0 +1,108 @@
+一、JS 基础概念
+1.JavaScript 是弱类型、解释型、动态类型前端脚本语言。
+2. 作用：页面交互、表单验证、DOM 操作、异步请求、前端逻辑。
+3. 三大组成：ECMAScript 核心语法、DOM 文档对象模型、BOM 浏览器对象模型。
+4. 代码引入方式：内部 script 标签、外部 js 文件、行内事件绑定。
+5. 代码注释：// 单行注释 /* 多行注释 */。
+二、变量与数据类型
+1. 变量声明：var、let、const。
+2.var 函数级作用域、可重复声明、变量提升。
+3.let 块级作用域、不可重复声明、无变量提升。
+4.const 声明常量、块级作用域、必须赋值、不可修改引用。
+5. 基本数据类型：String、Number、Boolean、Null、Undefined、Symbol、BigInt。
+6. 引用数据类型：Object、Array、Function、Date、RegExp。
+7. 判断类型：typeof、instanceof、Object.prototype.toString.call ()。
+8. 隐式转换：字符串拼接、运算比较时自动转换数据类型。
+三、运算符
+1. 算术运算符：+ - * / % ++ --。
+2. 赋值运算符：= += -= *= /=。
+3. 比较运算符：> < >= <= == === != !==。
+4.== 弱相等，自动类型转换；=== 严格相等，值 + 类型都对比。
+5. 逻辑运算符：&& 与、|| 或、! 非。
+6. 三元运算符：条件？表达式 1 : 表达式 2。
+7. 位运算符、逗号运算符、空值合并？？、可选链？.。
+四、流程控制
+1. 条件判断：if /else if /else。
+2. 分支选择：switch case default，break 穿透问题。
+3. 循环语句：for、while、do-while。
+4. 遍历循环：for...in 遍历键名，for...of 遍历值。
+5. 跳转关键字：break 跳出循环、continue 跳过本次。
+五、字符串 String
+1. 字符串不可变，一旦定义无法修改原内容。
+2. 常用方法：length 长度、charAt、indexOf、includes、slice、substring。
+3. 转换大小写：toUpperCase、toLowerCase。
+4. 去除空格：trim、trimStart、trimEnd。
+5. 分割拼接：split 分割、join 拼接、replace 替换。
+6. 模板字符串 `` ，支持换行、变量插值 ${变量}。
+六、数组 Array
+1. 数组有序、可存储任意类型数据，长度可变。
+2. 增删改查：push 末尾加、pop 末尾删、unshift 头部加、shift 头部删。
+3. 遍历方法：forEach、map、filter、find、some、every、reduce。
+4. 常用操作：splice 截取替换、slice 截取数组、concat 合并。
+5. 排序反转：sort 排序、reverse 反转。
+6. 去重方案：Set 去重、filter+indexOf。
+七、对象 Object
+1. 对象是键值对集合，存储描述性数据与方法。
+2. 创建方式：字面量 {}、new Object、构造函数。
+3. 属性访问：点语法 obj.key、括号语法 obj ['key']。
+4. 遍历对象：for...in、Object.keys、Object.values。
+5.this 指向：全局指向 window、普通函数调用指向调用者、箭头函数无自身 this。
+6. 对象拷贝：浅拷贝、深拷贝 JSON.parse+JSON.stringify。
+八、函数
+1. 函数作用：代码复用、封装逻辑、模块化。
+2. 定义方式：函数声明、函数表达式、箭头函数。
+3. 函数参数：形参、实参、默认参数、剩余参数...args。
+4.arguments 内置参数集合，箭头函数无 arguments。
+5. 箭头函数：简洁写法、无 this、无 arguments、不能做构造函数。
+6. 作用域：全局作用域、局部作用域、块级作用域。
+7. 作用域链、闭包：函数嵌套，内部函数访问外部变量，延长变量生命周期。
+九、DOM 文档操作
+1.DOM：将 HTML 文档转为树形节点结构。
+2. 获取元素：getElementById、getElementsByClassName、querySelector、querySelectorAll。
+3. 操作内容：innerText 纯文本、innerHTML 富文本、textContent。
+4. 操作属性：setAttribute、getAttribute、removeAttribute。
+5. 操作样式：style 行内样式、classList 增删切换类名。
+6. 节点操作：创建 createElement、追加 appendChild、移除 remove、克隆 cloneNode。
+十、BOM 浏览器操作
+1.BOM 操作浏览器窗口与全局信息。
+2.window 全局顶级对象，所有全局变量挂载在 window。
+3. 定时器：setTimeout 延时执行、setInterval 循环定时器。
+4. 地址栏：location 跳转页面、刷新、获取 url 参数。
+5. 历史记录：history 前进后退。
+6. 浏览器信息：navigator、屏幕信息 screen。
+十一、事件
+1. 事件三要素：事件源、事件类型、事件处理函数。
+2. 常见事件：点击 click、鼠标移入 mouseover、键盘 keydown、表单 submit。
+3. 事件绑定：行内绑定、DOM0 级绑定、DOM2 级 addEventListener。
+4. 事件流：捕获阶段、目标阶段、冒泡阶段。
+5. 阻止冒泡：e.stopPropagation ()。
+6. 阻止默认行为：e.preventDefault ()。
+7. 事件委托：利用冒泡，父元素统一绑定事件管理子元素。
+十二、异步语法
+1. 同步：顺序执行，阻塞等待；异步：非阻塞，后台执行。
+2. 回调函数：早期异步方案，容易产生回调地狱。
+3.Promise：解决回调地狱，三种状态 pending/fulfilled/rejected。
+4. 链式调用：.then .catch .finally。
+5.async/await：Promise 语法糖，以同步写法编写异步代码。
+6. 宏任务与微任务：事件循环 Event Loop 执行顺序。
+十三、JSON 与存储
+1.JSON 轻量数据交换格式，键名必须双引号。
+2. 转换方法：JSON.stringify 对象转字符串、JSON.parse 字符串转对象。
+3. 本地存储：localStorage 永久存储、sessionStorage 会话级存储。
+4. 存储特点：只能存字符串、容量有限、前端可直接访问。
+5.cookie：小型存储、可设置过期、后端可操作、自动携带请求头。
+十四、ES6+ 常用语法
+1. 解构赋值：数组解构、对象解构，快速取值。
+2. 展开运算符...：合并数组、合并对象、拷贝数据。
+3. 剩余参数：收集多余参数。
+4. 模块化：import 导入、export 导出。
+5.Set 集合：元素唯一，适合去重。
+6.Map 键值集合：键可以是任意类型。
+7. 简写语法：对象属性简写、方法简写。
+十五、AJAX & 网络请求
+1.AJAX 无刷新局部更新页面。
+2. 原生 XMLHttpRequest 发送请求。
+3. 接口请求方式：GET 查、POST 增、PUT 改、DELETE 删。
+4. 跨域问题：浏览器同源策略限制。
+5. 跨域解决方案：后端 CORS、代理跨域、JSONP。
+6.Fetch 原生请求 API，基于 Promise。
