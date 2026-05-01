@@ -26,7 +26,7 @@
 
 - Python >= 3.14
 - uv（Python 包管理器）
-- MiniMax API Key 和 Group ID
+- MiniMax API Key 和 Group ID(可替换为自己的LLM API KEY 和 Group ID)
 
 ## 🚀 快速开始
 
