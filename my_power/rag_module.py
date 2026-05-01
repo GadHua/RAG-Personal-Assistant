@@ -17,6 +17,7 @@ from langchain_classic.retrievers import EnsembleRetriever
 from langchain_core.retrievers import BaseRetriever
 from dashscope import TextReRank
 import streamlit as st
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # ========== 重排序检索器（加入重试） ==========
@@ -114,7 +115,7 @@ def get_embeddings():
 
 @st.cache_resource
 def get_vectorstore(_embeddings):
-    persist_dir = os.path.join(os.path.dirname(__file__), "..", "chroma_db")
+    persist_dir = os.path.join(os.path.dirname(__file__), "chroma_db")
     os.makedirs(persist_dir, exist_ok=True)
     return Chroma(
         persist_directory=persist_dir,
@@ -124,6 +125,8 @@ def get_vectorstore(_embeddings):
 @st.cache_resource
 def get_bm25_retriever(_vectorstore):
     all_data = _vectorstore._collection.get()
+    if not all_data["documents"]:
+        return None  # 知识库为空时返回 None
     docs_for_bm25 = [
         Document(page_content=text, metadata=meta)
         for text, meta in zip(all_data["documents"], all_data["metadatas"])
@@ -132,7 +135,7 @@ def get_bm25_retriever(_vectorstore):
 
 @st.cache_resource
 def get_semantic_cache(_embeddings):
-    persist_dir = os.path.join(os.path.dirname(__file__), "..", "chroma_db")
+    persist_dir = os.path.join(os.path.dirname(__file__), "chroma_db")
     return SemanticCache(_embeddings, persist_dir=persist_dir)
 
 
@@ -153,10 +156,15 @@ def build_rag_chain(params: Dict[str, Any]):
     vector_retriever = vectorstore.as_retriever(search_kwargs={"k": vector_k})
     bm25_retriever.k = bm25_k
 
-    ensemble_retriever = EnsembleRetriever(
-        retrievers=[vector_retriever, bm25_retriever],
-        weights=ensemble_weights
-    )
+    if bm25_retriever is not None:
+        bm25_retriever.k = bm25_k
+        ensemble_retriever = EnsembleRetriever(
+            retrievers=[vector_retriever, bm25_retriever],
+            weights=ensemble_weights
+        )
+    else:
+        # 无 BM25 检索器，只使用向量检索器
+        ensemble_retriever = vector_retriever
     rerank_retriever = RerankRetriever(
         base_retriever=ensemble_retriever,
         top_n=rerank_top_n

@@ -9,6 +9,7 @@ from rag_module import (
     get_vectorstore,
 )
 from upload_utils import process_uploaded_files
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 st.set_page_config(page_title="个人知识库问答", page_icon="📚")
 st.title("📚 个人知识库问答系统")

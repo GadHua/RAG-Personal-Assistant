@@ -7,8 +7,13 @@ from tenacity import retry, stop_after_attempt, wait_fixed
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter, MarkdownHeaderTextSplitter
 
-NOTES_DIR = "./my_notes"
-FINGERPRINT_FILE = "./indexed_files.json"
+# ✅ 使用相对于本文件的绝对路径，避免工作目录变化引发错误
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+NOTES_DIR = os.path.join(BASE_DIR, "my_notes")
+FINGERPRINT_FILE = os.path.join(BASE_DIR, "indexed_files.json")
+
+# 确保目录存在
+os.makedirs(NOTES_DIR, exist_ok=True)
 
 def get_file_hash(filepath):
     hasher = hashlib.md5()
@@ -34,7 +39,6 @@ def add_docs_with_retry(vectorstore, chunks):
 def process_uploaded_files(uploaded_files, vectorstore):
     if not uploaded_files:
         return 0
-    os.makedirs(NOTES_DIR, exist_ok=True)
     fingerprints = load_fingerprints()
     processed = 0
 
@@ -47,7 +51,6 @@ def process_uploaded_files(uploaded_files, vectorstore):
         if file_path in fingerprints and fingerprints[file_path] == file_hash:
             continue
 
-        # 如果是更新，先删除旧向量
         if file_path in fingerprints:
             try:
                 vectorstore._collection.delete(where={"source": file_path})
@@ -84,7 +87,6 @@ def process_uploaded_files(uploaded_files, vectorstore):
                 processed += 1
             except Exception as e:
                 print(f"⚠️ Failed to add documents for {file_path}: {e}")
-                # 继续处理其他文件
 
     save_fingerprints(fingerprints)
     return processed
