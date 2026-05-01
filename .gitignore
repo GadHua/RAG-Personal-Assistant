@@ -8,3 +8,13 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Environment variables
+.env
+
+# Vector database (can be regenerated)
+chroma_db/
+
+# Indexed files tracking
+indexed_files.json
+

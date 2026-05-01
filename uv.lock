@@ -22,6 +22,7 @@ dependencies = [
     { name = "openai" },
     { name = "rank-bm25" },
     { name = "streamlit" },
+    { name = "tenacity" },
 ]
 
 [package.metadata]
@@ -36,6 +37,7 @@ requires-dist = [
     { name = "openai", specifier = ">=2.32.0" },
     { name = "rank-bm25", specifier = ">=0.2.2" },
     { name = "streamlit", specifier = ">=1.56.0" },
+    { name = "tenacity", specifier = ">=9.1.4" },
 ]
 
 [[package]]
